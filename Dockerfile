@@ -1,5 +1,5 @@
 # Start with a clean Node.js environment
-FROM node:lts-alpine
+FROM node:lts
 
 # Set the working directory inside the container
 WORKDIR /app
