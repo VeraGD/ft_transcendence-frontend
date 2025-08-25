@@ -1,26 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: [
-		"./index.html",
-		"./src/**/*.{js,ts}"
-	  ],
+	content: ["./*.html"],
 	theme: {
 	  extend: {
-		// We define our custom colors here
+		// Tu nueva paleta de colores inspirada en Pokémon
 		colors: {
-		  'pixel-black': '#000000',
-		  'pixel-white': '#FFFFFF',
-		  'pixel-gray': '#808080',
+		  'poke-red': '#f85858',
+		  'poke-blue': '#5890f8',
+		  'poke-yellow': '#f8d058',
+		  'poke-dark': '#404040',
+		  'poke-light': '#f7f7f7',
 		},
-		// We define our custom font here
+		// La fuente pixelada que ya teníamos
 		fontFamily: {
 		  'pixel': ['"Press Start 2P"', 'cursive'],
 		},
-		// Adding a pixelated border effect using box-shadow
-		boxShadow: {
-		  'pixel': '4px 4px 0px #000000',
-		  'pixel-hover': '2px 2px 0px #000000',
-		}
+		// Un borde simple y grueso, estilo 8-bit
+		borderWidth: {
+		  '3': '3px',
+		},
 	  },
 	},
 	plugins: [],
