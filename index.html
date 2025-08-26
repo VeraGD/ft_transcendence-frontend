@@ -9,29 +9,38 @@
     <link href="/dist/output.css" rel="stylesheet">
 </head>
 
-<body class="font-pixel bg-poke-dark min-h-screen flex items-center justify-center p-4">
+<body class="font-pixel bg-poke-dark min-h-screen flex flex-col">
 
-    <div class="w-full max-w-lg">
+    <header class="bg-poke-yellow text-poke-dark text-center p-4 border-b-3 border-poke-dark">
+        <p>PONG</p>
+    </header>
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="w-full max-w-lg">
 
-        <div class="text-center mb-4">
-            <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
-            <p class="text-poke-light text-xs">PONG</p>
-        </div>
-
-        <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
-            
-            <p class="text-sm leading-relaxed mb-4">
-                Un TOPO ha aparecido. ¡Prepárate para buscarle!
-            </p>
-
-            <div class="grid grid-cols-2 gap-3 text-center">
-                <a href="#" class="bg-poke-red text-poke-light py-2 border-3 border-poke-dark rounded hover:bg-red-700"></a>
-                <a href="#" class="bg-poke-blue text-poke-light py-2 border-3 border-poke-dark rounded hover:bg-blue-700">LLAMAR Varys</a>
+            <div class="text-center mb-4">
+                <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
+                <p class="text-poke-light text-xs">PONG</p>
             </div>
 
+            <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
+                <p class="text-sm leading-relaxed mb-4">
+                    Un Entrenador ha aparecido. ¡Prepárate para el desafío!
+                </p>
+                <div class="grid grid-cols-2 gap-3 text-center">
+                    <a href="#" class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-red-900 rounded 
+                                       hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
+                        LUCHAR
+                    </a>
+                    <a href="#" class="bg-gradient-to-b from-poke-blue to-blue-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
+                                       hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-poke-dark">
+                        HUIR
+                    </a>
+                </div>
+            </div>
         </div>
-
-    </div>
-
-</body>
+    </main>
+    <footer class="bg-poke-yellow text-poke-dark text-center p-4 border-t-3 border-poke-dark">
+        <p>2025© </p>
+    </footer>
+    </body>
 </html>
