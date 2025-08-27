@@ -259,5 +259,5 @@ interface Player {
   export {}; // para evitar conflictos TS
   
   // tsc
-  // docker build -t pixel-theme .  
+  // docker build -t pixel-theme .
   //  docker run -p 3000:3000 pixel-theme
