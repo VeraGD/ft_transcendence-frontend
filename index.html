@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transcendence</title>
+
+  <link rel="icon" type="image/png" href="/assets/pong_logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link href="/dist/output.css" rel="stylesheet">
+</head>
+
+<body class="font-pixel bg-poke-dark min-h-screen flex flex-col">
+  <!-- Barra superior -->
+  <header class="bg-poke-yellow text-poke-dark text-center p-4 border-b-4 border-poke-dark">
+    <p>PONG</p>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center p-4">
+    <div id="app"></div> <!-- SPA -->
+  </main>
+
+  <!-- Barra inferior -->
+  <footer class="bg-poke-yellow text-poke-dark text-center p-4 border-t-4 border-poke-dark">
+    <p>2025 ©</p>
+  </footer>
+
+  <script type="module" src="dist/main.js"></script>
+</body>
+</html>
