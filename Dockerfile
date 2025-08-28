@@ -1,4 +1,5 @@
 # Start with a clean Node.js environment
+# -alpine
 FROM node:lts
 
 # Set the working directory inside the container
