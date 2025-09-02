@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Pixel Pokémon Style</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="/dist/output.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Transcendence</title>
+
+  <link rel="icon" type="image/png" href="/assets/pong_logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link href="/dist/output.css?v=<?= new Date().getTime() ?>" rel="stylesheet">
 </head>
 
-<body class="font-pixel bg-poke-dark min-h-screen flex items-center justify-center p-4">
+<body class="font-pixel bg-poke-dark min-h-screen flex flex-col">
+  <!-- Barra superior -->
+  <header class="bg-poke-yellow text-poke-dark text-center p-4 border-b-4 border-poke-dark">
+    <p>PONG</p>
+  </header>
 
-    <div class="w-full max-w-lg">
+  <main class="flex-grow flex items-center justify-center p-4">
+    <div id="app"></div> <!-- SPA -->
+  </main>
 
-        <div class="text-center mb-4">
-            <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
-            <p class="text-poke-light text-xs">PONG</p>
-        </div>
+  <!-- Barra inferior -->
+  <footer class="bg-poke-yellow text-poke-dark text-center p-4 border-t-4 border-poke-dark">
+    <p>2025 ©</p>
+  </footer>
 
-        <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
-            
-            <p class="text-sm leading-relaxed mb-4">
-                Un TOPO ha aparecido. ¡Prepárate para buscarle!
-            </p>
-
-            <div class="grid grid-cols-2 gap-3 text-center">
-                <a href="#" class="bg-poke-red text-poke-light py-2 border-3 border-poke-dark rounded hover:bg-red-700"></a>
-                <a href="#" class="bg-poke-blue text-poke-light py-2 border-3 border-poke-dark rounded hover:bg-blue-700">LLAMAR Varys</a>
-            </div>
-
-        </div>
-
-    </div>
-
+  <script type="module" src="dist/main.js"></script>
 </body>
 </html>
