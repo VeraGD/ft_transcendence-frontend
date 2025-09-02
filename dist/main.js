@@ -4,13 +4,13 @@ const state = {
 // Exponer navigate al window
 window.navigate = navigate;
 function router() {
-    var _a, _b, _c, _d, _e, _f, _g;
+    var _a, _b, _c, _d, _e, _f;
     const app = document.getElementById("app");
     if (!app)
         return;
     const route = window.location.pathname;
     switch (route) {
-        case "/registrer":
+        case "/register":
             app.innerHTML = `
             <div class="text-center mb-4">
                 <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
@@ -34,10 +34,7 @@ function router() {
             (_a = document.getElementById("regButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
                 state.player.alias = "42User";
                 state.player.user = "42Userrr";
-                navigate("/");
-            });
-            (_b = document.getElementById("withourreg")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
-                navigate("/");
+                navigate("/profile");
             });
             break;
         case "/game":
@@ -108,52 +105,63 @@ function router() {
             break;
         case "/profile":
             app.innerHTML = `
+        <div class="text-center mb-4">
+                <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
+                <p class="text-poke-light text-xs">PONG</p>
+            </div>
             <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
             <h2 class="text-sm leading-relaxed mb-4">PROFILE</h2>
-            <p class="text-sm leading-relaxed mb-4">
-                Welcome, ${state.player.alias || "Player"}!
-                This is your nickname.
-            </p>
-            <input type="text" id="nickEnter" placeholder="New nickname"
-                class="border-2 border-pixel-black px-4 py-2 mb-4 w-full" />
-            <button id="nickButton"
-                class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
-                        hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
-                Enter new nickname
-            </button>
             <p class="text-sm mb-4">
                 Welcome, ${state.player.user || "Player"}!
                 This is your username.
             </p>
             <input type="text" id="userEnter" placeholder="New username"
                 class="border-2 border-pixel-black px-4 py-2 mb-4 w-full" />
-            <button id="userButton"
+            <div  class = "flex justify-center">
+              <button id="userButton"
                 class="bg-gradient-to-b from-poke-blue to-blue-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
                         hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-poke-dark">
                 Enter new username
-            </button>
-            <button id="goBackBtn"
-                class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
-                        hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
-                Go Back
-            </button>
+            </button>   
+            </div>
+           
             </div>
         `;
-            const nickEnter = document.getElementById("nickEnter");
-            const nickButton = document.getElementById("nickButton");
             const userEnter = document.getElementById("userEnter");
             const userButton = document.getElementById("userButton");
-            nickButton === null || nickButton === void 0 ? void 0 : nickButton.addEventListener("click", submitNick);
-            nickEnter === null || nickEnter === void 0 ? void 0 : nickEnter.addEventListener("keydown", (e) => {
-                if (e.key === "Enter")
-                    submitNick();
+            (_b = document.getElementById("userButton")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
+                var _a;
+                const input = document.getElementById("userEnter");
+                if (!input)
+                    return;
+                const user = input.value.trim();
+                if (!user) {
+                    app.innerHTML = `
+              <div class="text-center mb-4">
+                <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
+                <p class="text-poke-light text-xs">PONG</p>
+              </div>
+              <div class="bg-poke-light text-poke-red border-3 border-poke-red p-4 rounded-lg shadow-lg">
+                <h2 class="text-sm leading-relaxed mb-4">Registration</h2>
+                <p class="text-sm leading-relaxed mb-4">Error: EMPTY USER</p>
+                <div class="flex justify-center">
+                  <button id="returnBtn"
+                    class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-red-900 rounded 
+                           hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
+                    Return
+                  </button>
+                </div>
+              </div>
+            `;
+                    (_a = document.getElementById("returnBtn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
+                        navigate("/profile");
+                    });
+                    return;
+                }
+                state.player.user = user;
+                localStorage.setItem("player", JSON.stringify(state.player));
+                navigate("/");
             });
-            userButton === null || userButton === void 0 ? void 0 : userButton.addEventListener("click", submitUser);
-            userEnter === null || userEnter === void 0 ? void 0 : userEnter.addEventListener("keydown", (e) => {
-                if (e.key === "Enter")
-                    submitUser();
-            });
-            (_c = document.getElementById("goBackBtn")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => navigate("/"));
             break;
         default: // Home
             app.innerHTML = `
@@ -163,7 +171,7 @@ function router() {
             </div>
           <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
           <h1 class="text-sm leading-relaxed mb-4">[ ft Transcendence ]</h1>
-          <p class="text-sm leading-relaxed mb-4">Welcome, ${state.player.alias || "Player"}!</p>
+          <p class="text-sm leading-relaxed mb-4">Welcome, ${state.player.user || "Player"}!</p>
           <button id="gameBtn" class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
                         hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
             Game
@@ -176,18 +184,16 @@ function router() {
                         hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
             Chat
             </button>
-          <button id="profBtn" class="bg-gradient-to-b from-poke-blue to-blue-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
-                        hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-poke-dark">
-            Profile
-            </button>
+  
           </div>
         `;
-            (_d = document.getElementById("gameBtn")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => navigate("/game"));
-            (_e = document.getElementById("tournamentBtn")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => navigate("/tournament"));
-            (_f = document.getElementById("chatBtn")) === null || _f === void 0 ? void 0 : _f.addEventListener("click", () => navigate("/chat"));
-            (_g = document.getElementById("profBtn")) === null || _g === void 0 ? void 0 : _g.addEventListener("click", () => navigate("/profile"));
+            (_c = document.getElementById("gameBtn")) === null || _c === void 0 ? void 0 : _c.addEventListener("click", () => navigate("/game"));
+            (_d = document.getElementById("tournamentBtn")) === null || _d === void 0 ? void 0 : _d.addEventListener("click", () => navigate("/tournament"));
+            (_e = document.getElementById("chatBtn")) === null || _e === void 0 ? void 0 : _e.addEventListener("click", () => navigate("/chat"));
+            (_f = document.getElementById("profBtn")) === null || _f === void 0 ? void 0 : _f.addEventListener("click", () => navigate("/profile"));
             break;
     }
+    updateHeaderFooterVisibility(route);
 }
 function navigate(path) {
     if (window.location.pathname !== path) {
@@ -195,39 +201,38 @@ function navigate(path) {
     }
     router();
 }
-function submitNick() {
-    const input = document.getElementById("nickEnter");
-    if (!input)
-        return;
-    const alias = input.value.trim();
-    if (!alias) {
-        alert("Please enter a valid nickname!");
-        return;
-    }
-    state.player.alias = alias;
-}
-function submitUser() {
-    const input = document.getElementById("userEnter");
-    if (!input)
-        return;
-    const user = input.value.trim();
-    if (!user) {
-        alert("Please enter a valid username!");
-        return;
-    }
-    state.player.user = user;
+function saveState() {
+    localStorage.setItem("player", JSON.stringify(state.player));
 }
 // Inicialización
 window.addEventListener("load", () => {
+    const stored = localStorage.getItem("player");
+    if (stored) {
+        state.player = JSON.parse(stored);
+    }
     if (!state.player.alias) {
-        navigate("/registrer");
+        navigate("/register");
     }
     else {
         router();
     }
 });
+function updateHeaderFooterVisibility(route) {
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer");
+    if (!header || !footer)
+        return;
+    if (route === "/register" || route === "/profile") {
+        header.classList.add("hidden");
+        footer.classList.add("hidden");
+    }
+    else {
+        header.classList.remove("hidden");
+        footer.classList.remove("hidden");
+    }
+}
 window.addEventListener("popstate", router);
 export {};
-// tsc
+// tsc && docker build -t pixel-theme . && docker run -p 3000:3000 pixel-theme
 // docker build -t pixel-theme .
 //  docker run -p 3000:3000 pixel-theme

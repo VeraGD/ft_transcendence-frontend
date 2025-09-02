@@ -21,7 +21,7 @@ interface Player {
     const route = window.location.pathname;
   
     switch (route) {
-    case "/registrer":
+    case "/register":
         app.innerHTML = `
             <div class="text-center mb-4">
                 <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
@@ -46,12 +46,10 @@ interface Player {
         document.getElementById("regButton")?.addEventListener("click", () => {
             state.player.alias = "42User";
             state.player.user = "42Userrr";
-            navigate("/");
+            navigate("/profile");
         });
     
-        document.getElementById("withourreg")?.addEventListener("click", () => {
-            navigate("/");
-        });
+
         break;
     
     case "/game":
@@ -128,54 +126,68 @@ interface Player {
 
     case "/profile":
         app.innerHTML = `
+        <div class="text-center mb-4">
+                <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
+                <p class="text-poke-light text-xs">PONG</p>
+            </div>
             <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
             <h2 class="text-sm leading-relaxed mb-4">PROFILE</h2>
-            <p class="text-sm leading-relaxed mb-4">
-                Welcome, ${state.player.alias || "Player"}!
-                This is your nickname.
-            </p>
-            <input type="text" id="nickEnter" placeholder="New nickname"
-                class="border-2 border-pixel-black px-4 py-2 mb-4 w-full" />
-            <button id="nickButton"
-                class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
-                        hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
-                Enter new nickname
-            </button>
             <p class="text-sm mb-4">
                 Welcome, ${state.player.user || "Player"}!
                 This is your username.
             </p>
             <input type="text" id="userEnter" placeholder="New username"
                 class="border-2 border-pixel-black px-4 py-2 mb-4 w-full" />
-            <button id="userButton"
+            <div  class = "flex justify-center">
+              <button id="userButton"
                 class="bg-gradient-to-b from-poke-blue to-blue-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
                         hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-poke-dark">
                 Enter new username
-            </button>
-            <button id="goBackBtn"
-                class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
-                        hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
-                Go Back
-            </button>
+            </button>   
+            </div>
+           
             </div>
         `;
-    
-        const nickEnter = document.getElementById("nickEnter") as HTMLInputElement | null;
-        const nickButton = document.getElementById("nickButton");
+
         const userEnter = document.getElementById("userEnter") as HTMLInputElement | null;
         const userButton = document.getElementById("userButton");
-    
-        nickButton?.addEventListener("click", submitNick);
-        nickEnter?.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Enter") submitNick();
+
+        document.getElementById("userButton")?.addEventListener("click", () => {
+          const input = document.getElementById("userEnter") as HTMLInputElement | null;
+          if (!input) return;
+        
+          const user = input.value.trim();
+          if (!user) {
+            app.innerHTML = `
+              <div class="text-center mb-4">
+                <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
+                <p class="text-poke-light text-xs">PONG</p>
+              </div>
+              <div class="bg-poke-light text-poke-red border-3 border-poke-red p-4 rounded-lg shadow-lg">
+                <h2 class="text-sm leading-relaxed mb-4">Registration</h2>
+                <p class="text-sm leading-relaxed mb-4">Error: EMPTY USER</p>
+                <div class="flex justify-center">
+                  <button id="returnBtn"
+                    class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-red-900 rounded 
+                           hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
+                    Return
+                  </button>
+                </div>
+              </div>
+            `;
+          
+            document.getElementById("returnBtn")?.addEventListener("click", () => {
+              navigate("/profile");
+            });
+          
+            return;
+          }
+          
+        
+          state.player.user = user;
+          localStorage.setItem("player", JSON.stringify(state.player));
+          navigate("/");
         });
-    
-        userButton?.addEventListener("click", submitUser);
-        userEnter?.addEventListener("keydown", (e: KeyboardEvent) => {
-            if (e.key === "Enter") submitUser();
-        });
-    
-        document.getElementById("goBackBtn")?.addEventListener("click", () => navigate("/"));
         break;
   
       default: // Home
@@ -186,7 +198,7 @@ interface Player {
             </div>
           <div class="bg-poke-light text-poke-dark border-3 border-poke-dark p-4 rounded-lg shadow-lg">
           <h1 class="text-sm leading-relaxed mb-4">[ ft Transcendence ]</h1>
-          <p class="text-sm leading-relaxed mb-4">Welcome, ${state.player.alias || "Player"}!</p>
+          <p class="text-sm leading-relaxed mb-4">Welcome, ${state.player.user || "Player"}!</p>
           <button id="gameBtn" class="bg-gradient-to-b from-poke-red to-red-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
                         hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
             Game
@@ -199,10 +211,7 @@ interface Player {
                         hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-poke-dark">
             Chat
             </button>
-          <button id="profBtn" class="bg-gradient-to-b from-poke-blue to-blue-700 text-poke-light py-2 border-3 border-poke-dark border-b-blue-900 rounded 
-                        hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-poke-dark">
-            Profile
-            </button>
+  
           </div>
         `;
         document.getElementById("gameBtn")?.addEventListener("click", () => navigate("/game"));
@@ -211,6 +220,7 @@ interface Player {
         document.getElementById("profBtn")?.addEventListener("click", () => navigate("/profile"));
         break;
     }
+    updateHeaderFooterVisibility(route);
   }
   
   function navigate(path: string): void {
@@ -220,42 +230,45 @@ interface Player {
     router();
   }
 
-  function submitNick(): void {
-    const input = document.getElementById("nickEnter") as HTMLInputElement | null;
-    if (!input) return;
-  
-    const alias = input.value.trim();
-    if (!alias) {
-      alert("Please enter a valid nickname!");
-      return;
-    }
-    state.player.alias = alias;
+  function saveState() {
+    localStorage.setItem("player", JSON.stringify(state.player));
   }
   
-  function submitUser(): void {
-    const input = document.getElementById("userEnter") as HTMLInputElement | null;
-    if (!input) return;
-  
-    const user = input.value.trim();
-    if (!user) {
-      alert("Please enter a valid username!");
-      return;
-    }
-    state.player.user = user;
-  }
+
   
   // Inicialización
   window.addEventListener("load", () => {
+    const stored = localStorage.getItem("player");
+    if (stored) {
+      state.player = JSON.parse(stored);
+    }
+  
     if (!state.player.alias) {
-      navigate("/registrer");
+      navigate("/register");
     } else {
       router();
     }
   });
+
+  function updateHeaderFooterVisibility(route: string) {
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer");
+  
+    if (!header || !footer) return;
+  
+    if (route === "/register" || route === "/profile") {
+      header.classList.add("hidden");
+      footer.classList.add("hidden");
+    } else {
+      header.classList.remove("hidden");
+      footer.classList.remove("hidden");
+    }
+  }  
+
   window.addEventListener("popstate", router);
   
   export {}; // para evitar conflictos TS
   
-  // tsc
+  // tsc && docker build -t pixel-theme . && docker run -p 3000:3000 pixel-theme
   // docker build -t pixel-theme .
   //  docker run -p 3000:3000 pixel-theme
