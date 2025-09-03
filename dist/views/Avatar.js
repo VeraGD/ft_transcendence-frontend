@@ -1,4 +1,5 @@
 import { navigate } from "../main.js";
+import { updateHeader } from "./Header.js";
 export function AvatarView(app, state) {
     app.innerHTML = `
     <div class="text-center mb-4">
@@ -25,6 +26,7 @@ export function AvatarView(app, state) {
             if (!value)
                 return;
             state.player.avatar = Number(value);
+            updateHeader(state);
             navigate("/");
         });
     });

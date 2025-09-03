@@ -7,6 +7,8 @@ import { GameView } from "./views/Game.js";
 import { TournamentView } from "./views/Tournament.js";
 import { ChatView } from "./views/Chat.js";
 import { HomeView } from "./views/Home.js";
+import { SettingsView } from "./views/Settings.js";
+import { updateHeader } from "./views/Header.js";
 const state = {
     player: { alias: "", user: "", avatar: 0 }
 };
@@ -31,7 +33,7 @@ function router() {
             ProfileView(app, state);
             break;
         case "/choose":
-            ChooseView(app);
+            ChooseView(app, state);
             break;
         case "/avatar":
             AvatarView(app, state);
@@ -44,6 +46,9 @@ function router() {
             break;
         case "/chat":
             ChatView(app, state);
+            break;
+        case "/settings":
+            SettingsView(app, state);
             break;
         default: // Home
             HomeView(app, state);
@@ -72,6 +77,7 @@ window.addEventListener("load", () => {
     if (stored) {
         state.player = JSON.parse(stored);
     }
+    updateHeader(state); // 👈 render avatar if it’s already stored
     if (!state.player.alias) {
         navigate("/register");
     }

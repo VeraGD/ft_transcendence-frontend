@@ -1,0 +1,28 @@
+import { navigate } from "../main.js";
+
+export function updateHeader(state: any): void {
+    const header = document.querySelector("header");
+    if (!header) return;
+  
+    header.innerHTML = `
+      <div class="relative flex items-center justify-center">
+        <p class="text-lg font-bold">PONG</p>
+        ${
+            state.player.avatar !== null && state.player.avatar !== undefined
+            ? `<div class="absolute right-4 flex items-center space-x-2">
+                    <img src="/assets/avatar${state.player.avatar}.png"
+                    alt="avatar"
+                    class="w-10 h-10 rounded-full border-2 border-poke-dark"/>
+                    <img src="/assets/settings.png"
+                     id="settingsBtn"
+                     alt="settings"
+                     class="w-10 h-10 rounded-full cursor-pointer hover:opacity-80"/>
+                </div>`
+            : ""
+        }
+      </div>
+    `;
+
+    document.getElementById("settingsBtn")?.addEventListener("click", () => navigate("/settings"));
+  }
+  

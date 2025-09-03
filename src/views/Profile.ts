@@ -62,6 +62,9 @@ export function ProfileView(app: HTMLElement, state: any): void {
     
       state.player.user = user;
       localStorage.setItem("player", JSON.stringify(state.player));
-      navigate("/choose");
+      if (state.player.avatar == 0)
+        navigate("/choose");
+      else
+        navigate("/");
     });
 }

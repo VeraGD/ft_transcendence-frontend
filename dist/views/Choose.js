@@ -1,5 +1,6 @@
 import { navigate } from "../main.js";
-export function ChooseView(app) {
+import { updateHeader } from "./Header.js";
+export function ChooseView(app, state) {
     var _a, _b;
     app.innerHTML = `
     <div class="text-center mb-4">
@@ -17,5 +18,9 @@ export function ChooseView(app) {
     </div>
   `;
     (_a = document.getElementById("withABtn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => navigate("/avatar"));
-    (_b = document.getElementById("withoutABtn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => navigate("/"));
+    (_b = document.getElementById("withoutABtn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => {
+        state.player.avatar = 10;
+        updateHeader(state);
+        navigate("/");
+    });
 }

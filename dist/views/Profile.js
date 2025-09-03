@@ -57,6 +57,9 @@ export function ProfileView(app, state) {
         }
         state.player.user = user;
         localStorage.setItem("player", JSON.stringify(state.player));
-        navigate("/choose");
+        if (state.player.avatar == 0)
+            navigate("/choose");
+        else
+            navigate("/");
     });
 }

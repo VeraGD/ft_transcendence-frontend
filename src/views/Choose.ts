@@ -1,6 +1,7 @@
 import { navigate } from "../main.js";
+import { updateHeader } from "./Header.js";
 
-export function ChooseView(app: HTMLElement): void {
+export function ChooseView(app: HTMLElement, state: any): void {
   app.innerHTML = `
     <div class="text-center mb-4">
         <h1 class="text-poke-yellow text-2xl">POKéMON</h1>
@@ -18,5 +19,9 @@ export function ChooseView(app: HTMLElement): void {
   `;
 
   document.getElementById("withABtn")?.addEventListener("click", () => navigate("/avatar"));
-  document.getElementById("withoutABtn")?.addEventListener("click", () => navigate("/"));
+  document.getElementById("withoutABtn")?.addEventListener("click", () => {
+    state.player.avatar = 10;
+    updateHeader(state);
+    navigate("/");
+  });
 }

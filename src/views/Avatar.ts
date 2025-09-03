@@ -1,4 +1,5 @@
 import { navigate } from "../main.js";
+import { updateHeader } from "./Header.js";
 
 export function AvatarView(app: HTMLElement, state: any): void {
   app.innerHTML = `
@@ -26,6 +27,7 @@ export function AvatarView(app: HTMLElement, state: any): void {
       const value = btn.getAttribute("data-avatar");
       if (!value) return;
       state.player.avatar = Number(value);
+      updateHeader(state);
       navigate("/");
     });
   });
