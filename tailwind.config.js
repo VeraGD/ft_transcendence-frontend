@@ -12,6 +12,9 @@ module.exports = {
         'poke-yellow': '#f8d058',
         'poke-dark': '#404040',
         'poke-light': '#f7f7f7',
+        'poke-white': '#ffffff',
+        'poke-violet': '#693F8E',
+
       },
       fontFamily: {
         'pixel': ['"Press Start 2P"', 'cursive'],
