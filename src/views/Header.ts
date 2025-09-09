@@ -11,8 +11,9 @@ export function updateHeader(state: any): void {
             state.player.avatar !== null && state.player.avatar !== undefined
             ? `<div class="absolute right-4 flex items-center space-x-2">
                     <img src="/assets/avatar${state.player.avatar}.png"
-                    alt="avatar"
-                    class="w-10 h-10 rounded-full border-2 border-poke-dark"/>
+                     id="avBtn"
+                     alt="avatar"
+                     class="w-10 h-10 rounded-full cursor-pointer hover:opacity-80"/>
                     <img src="/assets/settings.png"
                      id="settingsBtn"
                      alt="settings"
@@ -24,5 +25,6 @@ export function updateHeader(state: any): void {
     `;
 
     document.getElementById("settingsBtn")?.addEventListener("click", () => navigate("/settings"));
+    document.getElementById("avBtn")?.addEventListener("click", () => navigate("/statistics"));
   }
   

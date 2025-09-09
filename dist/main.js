@@ -9,8 +9,9 @@ import { ChatView } from "./views/Chat.js";
 import { HomeView } from "./views/Home.js";
 import { SettingsView } from "./views/Settings.js";
 import { updateHeader } from "./views/Header.js";
+import { StatsView } from "./views/Statistics.js";
 const state = {
-    player: { alias: "", user: "", avatar: 0 }
+    player: { alias: "", user: "", avatar: 0, matches: 10, victories: 7, defeats: 8 }
 };
 // La función navigate ahora debe ser exportada para que las vistas puedan importarla
 export function navigate(path) {
@@ -49,6 +50,9 @@ function router() {
             break;
         case "/settings":
             SettingsView(app, state);
+            break;
+        case "/statistics":
+            StatsView(app, state);
             break;
         default: // Home
             HomeView(app, state);

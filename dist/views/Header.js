@@ -1,6 +1,6 @@
 import { navigate } from "../main.js";
 export function updateHeader(state) {
-    var _a;
+    var _a, _b;
     const header = document.querySelector("header");
     if (!header)
         return;
@@ -10,8 +10,9 @@ export function updateHeader(state) {
         ${state.player.avatar !== null && state.player.avatar !== undefined
         ? `<div class="absolute right-4 flex items-center space-x-2">
                     <img src="/assets/avatar${state.player.avatar}.png"
-                    alt="avatar"
-                    class="w-10 h-10 rounded-full border-2 border-poke-dark"/>
+                     id="avBtn"
+                     alt="avatar"
+                     class="w-10 h-10 rounded-full cursor-pointer hover:opacity-80"/>
                     <img src="/assets/settings.png"
                      id="settingsBtn"
                      alt="settings"
@@ -21,4 +22,5 @@ export function updateHeader(state) {
       </div>
     `;
     (_a = document.getElementById("settingsBtn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => navigate("/settings"));
+    (_b = document.getElementById("avBtn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => navigate("/statistics"));
 }
