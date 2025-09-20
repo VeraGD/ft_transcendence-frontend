@@ -45,11 +45,18 @@ export function StatsView(app: HTMLElement, state: any): void {
         </div>
       </div>
 
-      <button id="goBackBtn" class="bg-poke-red bg-opacity-80 text-poke-light py-2 border-3 border-poke-red border-b-red-800 rounded hover:bg-gradient-to-b hover:from-red-500 hover:to-red-600 hover:border-b-red-800 active:animate-press active:border-b-red-800">
-        ${t("goBack")}
-      </button>
+      <div class="flex flex-col w-full space-y-2">
+        <button id="matchHistoryBtn" class="bg-poke-blue bg-opacity-80 text-poke-light py-2 border-3 border-poke-blue border-b-blue-800 rounded hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-blue-800">
+          ${t("matchHistory")}
+        </button>
+
+        <button id="goBackBtn" class="bg-poke-red bg-opacity-80 text-poke-light py-2 border-3 border-poke-red border-b-red-800 rounded hover:bg-gradient-to-b hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-red-800">
+          ${t("goBack")}
+        </button>
+      </div>
     </div>
   `;
 
   document.getElementById("goBackBtn")?.addEventListener("click", () => navigate("/"));
+  document.getElementById("matchHistoryBtn")?.addEventListener("click", () => navigate("/match-history"));
 }

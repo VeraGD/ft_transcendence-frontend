@@ -1,7 +1,7 @@
 import { navigate } from "../main.js";
 import { t } from "../translations/index.js";
 export function StatsView(app, state) {
-    var _a;
+    var _a, _b;
     // Determine avatar source
     let avatarSrc = "";
     if (state.player.avatar !== null && state.player.avatar !== undefined) {
@@ -45,10 +45,17 @@ export function StatsView(app, state) {
         </div>
       </div>
 
-      <button id="goBackBtn" class="bg-poke-red bg-opacity-80 text-poke-light py-2 border-3 border-poke-red border-b-red-800 rounded hover:bg-gradient-to-b hover:from-red-500 hover:to-red-600 hover:border-b-red-800 active:animate-press active:border-b-red-800">
-        ${t("goBack")}
-      </button>
+      <div class="flex flex-col w-full space-y-2">
+        <button id="matchHistoryBtn" class="bg-poke-blue bg-opacity-80 text-poke-light py-2 border-3 border-poke-blue border-b-blue-800 rounded hover:bg-gradient-to-b hover:from-blue-500 hover:to-blue-600 active:animate-press active:border-b-blue-800">
+          ${t("matchHistory")}
+        </button>
+
+        <button id="goBackBtn" class="bg-poke-red bg-opacity-80 text-poke-light py-2 border-3 border-poke-red border-b-red-800 rounded hover:bg-gradient-to-b hover:from-red-500 hover:to-red-600 active:animate-press active:border-b-red-800">
+          ${t("goBack")}
+        </button>
+      </div>
     </div>
   `;
     (_a = document.getElementById("goBackBtn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => navigate("/"));
+    (_b = document.getElementById("matchHistoryBtn")) === null || _b === void 0 ? void 0 : _b.addEventListener("click", () => navigate("/match-history"));
 }

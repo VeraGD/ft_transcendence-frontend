@@ -37,5 +37,13 @@ export default {
   connect_with_42: "Connect with 42.",
   enter: "Enter",
   welcome_classification: "Welcome, {user}! Classification.",
+  matchHistory: "Match History",
+  lastMatches: "Last Matches",
+  noMatches: "No matches yet",
+  opponent: "Opponent",
+  result: "Result",
+  score: "Score",
+  victory: "Victory",
+  defeat: "Defeat",
 
 };

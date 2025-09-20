@@ -11,6 +11,8 @@ import { SettingsView } from "./views/Settings.js";
 import { updateHeader } from "./views/Header.js";
 import { StatsView } from "./views/Statistics.js";
 import { LanguageView } from "./views/Language.js";
+import { MatchHistoryView } from "./views/MatchHistory.js";
+
 
 
 // Define las interfaces y el estado global
@@ -84,6 +86,9 @@ function router(): void {
       break;
     case "/language":
       LanguageView(app, state);
+      break;
+      case "/match-history":
+      MatchHistoryView(app, state);
       break;
     default: // Home
       HomeView(app, state);
