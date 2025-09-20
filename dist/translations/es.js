@@ -29,4 +29,12 @@ export default {
     registration: "Registro",
     error_empty_user: "Error: USUARIO VACÍO",
     return: "Volver",
+    chat_info: "ESTE ES EL CHAT.",
+    go_back: "Volver",
+    new_avatar: "Nuevo avatar",
+    choose_new_avatar: "Elegir nuevo avatar",
+    continue_without_avatar: "Continuar sin avatar",
+    connect_with_42: "Conéctate con 42.",
+    enter: "Entrar",
+    welcome_classification: "¡Bienvenido, {user}! Clasificación.",
 };

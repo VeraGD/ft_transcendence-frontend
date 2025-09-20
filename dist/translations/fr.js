@@ -29,4 +29,12 @@ export default {
     registration: "Inscription",
     error_empty_user: "Erreur : NOM VIDE",
     return: "Retour",
+    chat_info: "C'EST LE CHAT.",
+    go_back: "Retour",
+    new_avatar: "Nouvel avatar",
+    choose_new_avatar: "Choisir un nouvel avatar",
+    continue_without_avatar: "Continuer sans avatar",
+    connect_with_42: "Connectez-vous avec 42.",
+    enter: "Entrer",
+    welcome_classification: "Bienvenue, {user} ! Classement.",
 };

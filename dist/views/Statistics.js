@@ -2,13 +2,23 @@ import { navigate } from "../main.js";
 import { t } from "../translations/index.js";
 export function StatsView(app, state) {
     var _a;
+    // Determine avatar source
+    let avatarSrc = "";
+    if (state.player.avatar !== null && state.player.avatar !== undefined) {
+        if (typeof state.player.avatar === "number") {
+            avatarSrc = `/assets/avatar${state.player.avatar}.png`; // built-in
+        }
+        else if (typeof state.player.avatar === "string") {
+            avatarSrc = state.player.avatar; // uploaded
+        }
+    }
     app.innerHTML = `
     <div class="bg-poke-light bg-opacity-60 text-poke-dark border-3 border-poke-dark p-6 rounded-lg shadow-lg max-w-sm mx-auto flex flex-col items-center text-center">
       <h1 class="text-sm leading-relaxed mb-4">${t("statistics")}</h1>
 
-      <img src="/assets/avatar${state.player.avatar}.png"
+      ${avatarSrc ? `<img src="${avatarSrc}"
         id="avBtn"
-        class="w-40 h-40 rounded-full cursor-pointer hover:opacity-80 mb-6"/>
+        class="w-40 h-40 rounded-full cursor-pointer hover:opacity-80 mb-6"/>` : ""}
 
       <div class="w-full space-y-3 mb-6">
         <div class="flex justify-between items-center">

@@ -29,4 +29,12 @@ export default {
     registration: "Registration",
     error_empty_user: "Error: EMPTY USER",
     return: "Return",
+    chat_info: "THIS IS THE CHAAAAT.",
+    go_back: "Go Back",
+    new_avatar: "New avatar",
+    choose_new_avatar: "Choose new avatar",
+    continue_without_avatar: "Continue without avatar",
+    connect_with_42: "Connect with 42.",
+    enter: "Enter",
+    welcome_classification: "Welcome, {user}! Classification.",
 };
