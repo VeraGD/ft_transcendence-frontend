@@ -10,9 +10,17 @@ import { HomeView } from "./views/Home.js";
 import { SettingsView } from "./views/Settings.js";
 import { updateHeader } from "./views/Header.js";
 import { StatsView } from "./views/Statistics.js";
+import { LanguageView } from "./views/Language.js";
 const state = {
     player: { alias: "", user: "", avatar: 0, matches: 10, victories: 7, defeats: 8 }
 };
+export let currentLang = localStorage.getItem("playerLang") || "en";
+export function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem("playerLang", lang);
+    // re-render current view so any language-aware UI can update
+    router();
+}
 // La función navigate ahora debe ser exportada para que las vistas puedan importarla
 export function navigate(path) {
     if (window.location.pathname !== path) {
@@ -53,6 +61,9 @@ function router() {
             break;
         case "/statistics":
             StatsView(app, state);
+            break;
+        case "/language":
+            LanguageView(app, state);
             break;
         default: // Home
             HomeView(app, state);
